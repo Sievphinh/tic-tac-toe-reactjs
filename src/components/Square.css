@@ -1,0 +1,43 @@
+.square {
+  border-radius: 10px;
+  text-align: center;
+  color: black;
+  font-size: 60px;
+  font-weight: bold;
+  /* border-radius: */
+  background-color: rgb(234, 67, 255);
+}
+
+button:hover {
+  background-color: #f34442;
+}
+
+.cross-line1,
+.cross-line2,
+.vertical-line,
+.horizon-line {
+  position: relative;
+  display: inline-block;
+}
+
+.cross-line1::before {
+  content: "";
+  border-bottom: 10px solid black;
+  top: 50%;
+  right: 0;
+  width: 100%;
+  position: absolute;
+  -webkit-transform: skewY(45deg);
+  transform: skewY(45deg);
+}
+
+.cross-line2::before {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid black;
+  top: 50%;
+  right: 0;
+  position: absolute;
+  -webkit-transform: skewY(-45deg);
+  transform: skewY(-45deg);
+}
