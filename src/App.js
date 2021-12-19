@@ -40,7 +40,7 @@ function App() {
         };
       }
     }
-    return { winner: null, winningInfo: null };
+    return { winner: null, winnerInfo: null };
   };
   const info = calcualateWinner(squares);
   console.log(typeof info);
