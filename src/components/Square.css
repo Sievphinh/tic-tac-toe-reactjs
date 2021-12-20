@@ -1,5 +1,5 @@
 .square {
-  border-radius: 10px;
+  border-radius: 5px;
   text-align: center;
   color: black;
   font-size: 60px;
@@ -22,7 +22,7 @@ button:hover {
 
 .cross-line1::before {
   content: "";
-  border-bottom: 10px solid black;
+  border-bottom: 5px solid black;
   top: 50%;
   right: 0;
   width: 100%;
@@ -34,10 +34,26 @@ button:hover {
 .cross-line2::before {
   content: "";
   width: 100%;
-  border-bottom: 2px solid black;
+  border-bottom: 5px solid black;
   top: 50%;
   right: 0;
   position: absolute;
   -webkit-transform: skewY(-45deg);
   transform: skewY(-45deg);
+}
+.horizon-line::before {
+  content: "";
+  width: 100%;
+  border-bottom: 5px solid black;
+  top: 50%;
+  right: 0;
+  position: absolute;
+}
+.vertical-line::before {
+  content: "";
+  height: 100%;
+  border-left: 5px solid black;
+  position: absolute;
+  top: 0;
+  left: 50%;
 }

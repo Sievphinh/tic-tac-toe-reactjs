@@ -14,7 +14,6 @@ function App() {
     const squaresCopy = [...squares];
     squaresCopy[square] = nextValue;
     setSquares(squaresCopy);
-    console.log(squares);
   };
   const calcualateWinner = (squares) => {
     const winningLogic = [
@@ -36,39 +35,57 @@ function App() {
       ) {
         return {
           winner: squares[a],
-          winnerInfo: [squares[a], squares[b], squares[c]],
+          winnerInfo: [a, b, c],
         };
       }
     }
     return { winner: null, winnerInfo: null };
   };
   const info = calcualateWinner(squares);
-  console.log(typeof info);
   const { winner, winnerInfo } = info;
-  console.log(winnerInfo);
   const showWinner = (winner, squares) => {
     return winner && squares.filter(Boolean).length > 0
       ? `The player ${winner} win the game`
-      : "The game is draw";
+      : squares.filter(Boolean).length === 9
+      ? "The game is draw"
+      : "We don't get any winner yet";
   };
   const status = showWinner(winner, squares);
   const restartGame = () => {
     setSquares(Array(9).fill(null));
   };
+  const getClassName = (pos) => {
+    return (pos.includes(0) && pos.includes(1) && pos.includes(2)) ||
+      (pos.includes(5) && pos.includes(4) && pos.includes(3)) ||
+      (pos.includes(6) && pos.includes(7) && pos.includes(8))
+      ? "horizon-line"
+      : pos.includes(0) && pos.includes(4) && pos.includes(8)
+      ? "cross-line1"
+      : pos.includes(6) && pos.includes(4) && pos.includes(2)
+      ? "cross-line2"
+      : "vertical-line";
+  };
+  const className = winnerInfo ? getClassName(winnerInfo) : "";
+  console.log(winnerInfo ? winnerInfo : "null");
+  console.log(className);
   return (
     <div className="App">
-      <h2>Simple Tic-tac-toe game</h2>
+      <h2>React Tic-Tac-Toe Game</h2>
       <Board>
         {squares.map((square, i) => {
           return (
             <Square
               key={i}
               value={square}
+              className={
+                winner && winnerInfo && winnerInfo.includes(i) ? className : ""
+              }
               onClick={() => {
                 selectSquare(i);
               }}
             >
               {square}
+              {i}
             </Square>
           );
         })}
@@ -80,12 +97,13 @@ function App() {
         }}
         style={{
           width: "100px",
-          height: "60px",
+          height: "40px",
           borderRadius: "10px",
           fontSize: "20px",
+          backgroundColor: "#565343",
         }}
       >
-        Reset Game
+        Reset
       </button>
     </div>
   );
